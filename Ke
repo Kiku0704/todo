@@ -53,6 +53,7 @@ export default function TextHighlighter({ value, onChange, placeholder, classNam
     // Create a span with the highlight color
     const highlightSpan = document.createElement("span")
     highlightSpan.className = color.class
+    highlightSpan.dir = "ltr" // Explicit left-to-right direction
 
     // Apply the highlight
     range.surroundContents(highlightSpan)
@@ -140,10 +141,12 @@ export default function TextHighlighter({ value, onChange, placeholder, classNam
       <div
         ref={editorRef}
         contentEditable
+        dir="ltr" // Explicit left-to-right text direction
         className={`w-full min-h-[60px] p-2 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-300 resize-y overflow-auto ${className}`}
         onInput={handleInput}
         placeholder={placeholder}
         dangerouslySetInnerHTML={{ __html: value }}
+        style={{ textAlign: "left" }} // Force left alignment
       />
     </div>
   )
